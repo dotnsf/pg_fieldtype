@@ -1,0 +1,26 @@
+swagger: '2.0'
+info:
+  description: PG_FIELDTYPE API ドキュメント
+  version: 0.0.1
+  title: PG_FIELDTYPE REST APIs
+#basePath: /
+tags:
+  - name: pg_fieldtype
+    description: PG_FIELDTYPE API
+schemes:
+  - http
+  - https
+paths:
+  /fieldtype:
+    get:
+      tags:
+        - pg_fieldtype
+      summary: Get fieldtype
+      description: Get fieldtype of each columns
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 成功
+        '400':
+          description: エラー

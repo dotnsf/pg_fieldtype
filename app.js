@@ -1,5 +1,6 @@
 //. app.js
 var express = require( 'express' ),
+    fs = require( 'fs' ),
     app = express();
 var PG = require( 'pg' );
 
@@ -72,7 +73,7 @@ app.get( '/fieldtype', async function( req, res ){
             });
             //console.log( {tablename} );
             //console.log( {columns} );
-            tables['tablename'] = columns;
+            tables[tablename] = columns;
           }
         }
       }
@@ -90,9 +91,6 @@ app.get( '/fieldtype', async function( req, res ){
     res.write( JSON.stringify( { status: false, error: e } ) );
     res.end();
   }finally{
-    if( fs.existsSync( 'tmp/' + outputfilename ) ){
-      fs.unlinkSync( 'tmp/' + outputfilename );
-    }
   }
 });
 

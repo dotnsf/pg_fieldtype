@@ -53,7 +53,7 @@ app.get( '/fieldtype', async function( req, res ){
 
   try{
     if( pg ){
-      var results = [];
+      var tables = {};
       //. テーブル一覧
       var r0 = await displayTables( pg );
       if( r0 && r0.status ){
@@ -70,14 +70,14 @@ app.get( '/fieldtype', async function( req, res ){
               }, null );
               columns.push( { column_name: f.name, type: dt } );
             });
-            console.log( {tablename} );
-            console.log( {columns} );
-            results.push( { table_name: tablename, columns: columns } );
+            //console.log( {tablename} );
+            //console.log( {columns} );
+            tables['tablename'] = columns;
           }
         }
       }
       
-      res.write( JSON.stringify( { status: true, results: results }, null, 2 ) );
+      res.write( JSON.stringify( { status: true, results: tables }, null, 2 ) );
       res.end();
     }else{
       res.status( 400 );
